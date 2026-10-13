@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Life Between Buildings · Jan Gehl</title>
+<style>
+:root{--navy:#14213d;--char:#2b2d33;--ink:#1d1f24;--mut:#5d6370;--line:#dfe2e8;--bg:#f6f7f9;--acc:#c8963e;--ok:#2f6b4f;--bad:#9b3434}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:17px}
+header.hero{background:var(--navy);color:#fff;padding:56px 20px 44px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.hero small{letter-spacing:.18em;text-transform:uppercase;color:var(--acc);font-weight:600;font-size:12px}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(30px,5vw,46px);margin:10px 0 6px}
+.hero p{color:#c9cfdb;margin:0;max-width:640px}
+nav.toc{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;overflow-x:auto;white-space:nowrap}
+nav.toc a{display:inline-block;padding:12px 14px;color:var(--char);text-decoration:none;font-size:14px;font-weight:600}
+nav.toc a:hover{color:var(--navy);box-shadow:inset 0 -3px 0 var(--acc)}
+.letter{background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);padding:30px 32px;margin:34px 0;border-radius:4px}
+.letter h2{font-family:Georgia,serif;font-weight:400;margin-top:0;color:var(--navy)}
+.sign{font-family:Georgia,serif;font-size:21px;color:var(--navy);margin-top:-8px}
+section.ch{margin:46px 0}
+.chhead{border-left:4px solid var(--acc);padding-left:16px;margin-bottom:18px}
+.chhead span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.chhead h2{font-family:Georgia,serif;font-weight:400;font-size:30px;margin:4px 0;color:var(--navy)}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px 26px;margin:16px 0}
+.card h3{margin:0 0 10px;color:var(--navy);font-size:20px}
+.card h3 .no{color:var(--acc);margin-right:8px;font-variant-numeric:tabular-nums}
+.term{font-style:normal;color:var(--mut);font-size:.92em}
+.key{background:#f1ede4;border-left:3px solid var(--acc);padding:10px 14px;margin:14px 0;font-size:15.5px}
+.stat{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.stat div{flex:1 1 160px;border:1px solid var(--line);padding:12px;border-radius:4px}
+.stat b{display:block;font-size:24px;color:var(--navy);font-family:Georgia,serif}.stat small{color:var(--mut)}
+.note{font-size:13px;color:var(--mut)}
+.q{border:1px solid var(--line);background:#fafbfc;border-radius:4px;padding:18px;margin:18px 0}
+.q .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.q .qt{font-weight:600;margin:6px 0 12px}
+.opts{display:grid;gap:8px}
+.opts button,.sortrow button{font:inherit;font-size:15.5px;text-align:left;background:#fff;border:1px solid #c9ced8;border-radius:4px;padding:10px 14px;cursor:pointer;color:var(--ink)}
+.opts button:hover,.sortrow button:hover{border-color:var(--navy)}
+button.right{border-color:var(--ok)!important;background:#eaf3ee!important}
+button.wrong{border-color:var(--bad)!important;background:#f8ecec!important;color:#6b2a2a}
+.fb{margin-top:10px;font-size:15px;padding:10px 12px;border-radius:4px;display:none}.fb.show{display:block}
+.fb.ok{background:#eaf3ee;border-left:3px solid var(--ok)}.fb.no{background:#f8ecec;border-left:3px solid var(--bad)}
+.sortrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 0;border-top:1px dashed var(--line)}
+.sortrow .it{flex:1 1 260px;font-size:15.5px}.sortrow button{padding:6px 12px;font-size:14px}
+.sortrow .fb{flex-basis:100%;margin:0}
+.lesson{background:var(--navy);color:#e8ebf2;padding:16px 20px;border-radius:4px;font-size:15.5px}.lesson b{color:var(--acc)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.compare div{border:1px solid var(--line);padding:12px;border-radius:4px;font-size:15px}
+.compare h4{margin:0 0 6px;color:var(--navy)}
+@media(max-width:600px){.compare{grid-template-columns:1fr}.card,.letter{padding:20px 18px}body{font-size:16px}}
+.summary{background:#fff;border:1px solid var(--line);border-radius:4px;padding:26px}
+.scales{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:18px 0;border:1px solid var(--navy)}
+.scales>div{padding:16px;border-right:1px solid var(--line)}.scales>div:last-child{border-right:0}
+.scales h4{margin:0 0 4px;color:var(--navy);font-size:17px}.scales .lvl{font-size:11px;letter-spacing:.16em;color:var(--acc);font-weight:700;text-transform:uppercase}
+.scales ul{padding-left:18px;margin:8px 0 0;font-size:14.5px}
+@media(max-width:700px){.scales{grid-template-columns:1fr}.scales>div{border-right:0;border-bottom:1px solid var(--line)}}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.three div{background:var(--navy);color:#fff;padding:16px;border-radius:4px}
+.three b{color:var(--acc);font-family:Georgia,serif;font-size:26px;display:block}
+@media(max-width:700px){.three{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.pairs div{border:1px solid var(--line);padding:10px;text-align:center;font-size:14px;border-radius:4px}
+.pairs b{display:block;color:var(--navy)}
+@media(max-width:700px){.pairs{grid-template-columns:1fr 1fr}}
+table.rep{width:100%;border-collapse:collapse;font-size:14.5px;margin:10px 0}table.rep td,table.rep th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar span{display:block;height:100%;background:var(--navy)}
+.form label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}.form input{width:100%;padding:11px 12px;font:inherit;border:1px solid #c9ced8;border-radius:4px}
+.primary{background:var(--navy);color:#fff;border:0;padding:12px 22px;font:inherit;font-weight:600;border-radius:4px;cursor:pointer;margin-top:16px}
+.primary:hover{background:var(--char)}.primary:disabled{opacity:.6}
+#sendMsg{margin-top:12px;font-weight:600}#sendMsg.ok{color:var(--ok)}#sendMsg.err{color:var(--bad)}
+footer{color:var(--mut);font-size:13px;text-align:center;padding:40px 20px}
+svg text{font-family:inherit}
+</style></head><body>
+<header class="hero"><div class="wrap"><small>Mimarlık okuma notları</small><h1>Life Between Buildings</h1><p>Jan Gehl · <i>Using Public Space</i> — binaların arasındaki hayatı okumak ve tasarlamak üzerine bölüm bölüm etkileşimli bir özet.</p></div></header>
+<nav class="toc"><div class="wrap"><a href="#mektup">Mektup</a><a href="#onsoz">Önsöz</a><a href="#ch1">1 · Binalar Arasında Hayat</a><a href="#ch2">2 · Planlama Ön Koşulları</a><a href="#ch3">3 · Toplamak / Dağıtmak</a><a href="#ch4">4 · Yürümek ve Kalmak</a><a href="#ozet">Tasarım Özeti</a><a href="#rapor">Rapor</a></div></nav>
+<main class="wrap">
+
+<section class="letter" id="mektup"><h2>Başlamadan önce</h2>
+<p>Sevgili öğrencim,</p>
+<p>Mimarlık deyince çoğumuzun aklına önce binalar gelir: cephe, form, malzeme, plan. Oysa bir şehirde yürürken hatırladığın anların çoğu binaların <i>arasında</i> geçer. Bir kapı önünde durup sohbet etmek, bir merdivende oturup insanları izlemek, köşede bir arkadaşla karşılaşmak… Bu kitabı, bu küçük anların tesadüf olmadığını görmen için seçtim.</p>
+<p>Jan Gehl’in <i>Life Between Buildings</i> kitabı, bir mekânın başarısını yalnızca nasıl göründüğüyle değil, orada insanların ne yapabildiğiyle ölçmeyi öğretiyor. Mesafeler, kenarlar, oturma yerleri, rüzgâr ve güneş, girişlerin yönü… Hepsi insanların bir yerde kalıp kalmayacağını belirliyor.</p>
+<p>Bu özeti okurken senden bütün sayıları ezberlemeni beklemiyorum. Kitaptaki istatistikler o dönemden tarihsel örnekler; asıl önemli olan arkalarındaki fikir. Okuduktan sonra okul bahçesine, mahallendeki meydana ya da bir kafenin önüne farklı bakmaya başlaman yeterli: “İnsanlar burada neden duruyor?” ya da “Bu bank neden hep boş?” diye sorman güzel bir başlangıç.</p>
+<p>Bu kitap sana tasarıma kullanıcının gözünden bakmayı, çizimdeki boş alanın gerçekte boş mu kalacağını sorgulamayı ve şehir ölçeğinden tek bir bankın yerine kadar her kararın insan hayatına dokunduğunu fark etmeyi kazandırabilir. Gelecekte çizeceğin her projede bu gözlem alışkanlığı sana çok şey katacak.</p>
+<p>Kartlardaki sorularda acele etme. Yanlış cevap vermen sorun değil; tekrar deneyebilirsin ve her açıklama sana bir şey öğretir. Sonunda cevaplarını bana gönderebilirsin.</p>
+<p>Sevgilerimle,</p><p class="sign">Işıl Tabağ</p></section>
+
+<section class="ch" id="onsoz"><div class="chhead"><span>Önsöz</span><h2>Binaların arasında ne oluyor?</h2></div>
+<div class="card"><h3>Kitap neden yazıldı?</h3>
+<p>Kitap, 20. yüzyılın <b>işlevselci (functionalist)</b> mimari ve planlama anlayışına bir eleştiri olarak başladı. İşlevselcilik önemli sorunları çözdü: güneş ışığı, havalandırma, hijyen ve verimli dolaşım. Ama bir şeyi gözden kaçırdı: binaların <b>arasında</b> ne olduğunu.</p>
+<p>Gehl’e göre mimarlık yalnızca binanın kendisi değildir; binanın günlük hayat için yarattığı koşulları da kapsar. Sokaklar, meydanlar, girişler ve açık alanlar, insanların karşılaşıp karşılaşmayacağına, dışarıda kalıp kalmayacağına ya da içeri çekilip çekilmeyeceğine karar verir.</p>
+<div class="key">İnsanın temel ihtiyaçları zaman içinde pek değişmez: rahat yürümek, başkalarını izlemek, kötü koşullardan korunmak ve hazırlık gerektirmeden etkileşimin gelişebileceği ortamlar. Bu yüzden şehre <b>kullanıcının konumundan</b> bakmak gerekir: hareket, duraklama, dinlenme ve temas.</div>
+<div class="q" data-q="f1"></div></div></section>
+
+<section class="ch" id="ch1"><div class="chhead"><span>Bölüm 1</span><h2>Binalar Arasında Hayat</h2></div>
+<div class="card"><h3><span class="no">1.1</span>Üç tür dış mekân etkinliği</h3>
+<p><b>Zorunlu etkinlikler (necessary activities):</b> Okula ya da işe gitmek, temel alışveriş, posta dağıtmak, otobüs beklemek. Bunlar çevre kötü olsa bile yapılır, çünkü seçme şansımız yoktur. Bu yüzden bir sokakta çok yaya olması, o sokağın başarılı olduğunu tek başına <b>kanıtlamaz</b>.</p>
+<p><b>İsteğe bağlı etkinlikler (optional activities):</b> Keyif için yürümek, dışarıda oturmak, güneşlenmek, durup bir şeyi izlemek. Bunlar yalnızca koşullar çekici olduğunda gerçekleşir ve mekân kalitesine çok duyarlıdır: rüzgârlı bir meydanda ya da kötü oturma yerlerinde kimse gönüllü olarak kalmaz. İsteğe bağlı etkinliği desteklemek, insanlara <b>zorunluluğun ötesinde kalmak için bir neden</b> vermektir.</p>
+<p><b>Sosyal etkinlikler (social activities):</b> Sohbet, selamlaşma, çocukların oyunu, ortak etkinlikler ve ayrıca başkalarını <b>pasif olarak görmek ve duymak</b>. Bankta tek başına oturan biri de sosyal hayata katılır. Sosyal etkinlikler, zorunlu ve isteğe bağlı etkinliklerden <b>doğar</b>.</p>
+<p>Kategoriler iç içe geçer: alışveriş bir gezintiye, bir duraklama sohbete, çocukları izlemek oyuna katılmaya dönüşebilir.</p>
+<div class="q" data-sort="s1"></div>
+<div class="q" data-q="c1a"></div></div>
+
+<div class="card"><h3><span class="no">1.2</span>Düşük yoğunluklu temas <span class="term">(low-intensity contact)</span></h3>
+<p>Temas, yakın arkadaşlıktan kısa bir karşılaşmaya ya da yalnızca birinin farkında olmaya kadar uzanan bir yelpazedir. Kamusal mekân bu yelpazenin <b>alt ucunu</b> destekler: yalnızlık ile organize katılım arasındaki boşluğu. Taahhüt gerektirmeyen bir birliktelik sunar: sokağı izleyen yaşlı biri, başka çocuklar oynuyor mu diye bakan bir çocuk.</p>
+<p>Tekrarlanan karşılaşmalar tanıdıklık yaratır; komşular tanışıklıklarını çaba harcamadan sürdürür. Her temasın arkadaşlığa dönüşmesi gerekmez; değerli olan <b>bütün temas düzeylerinin erişilebilir kalmasıdır</b>. Kamusal mekân ayrıca toplum hakkında doğrudan bilgi verir.</p>
+<p><b>İnsanlar dikkat çeker:</b> Çocuklar özel oyun alanlarından çok girişlerin ve erişim yollarının yakınında oynar. Kalabalık yollara bakan banklar, bitkili alanlara bakanlardan daha çok kullanılır. Kafe sandalyeleri sokağa döner. Kopenhag’daki <b>Strøget</b> çalışmasında insanlar sokak sanatçıları, oynayan çocuklar ve inşaat işleri için durdu; sanatçılar ya da işçiler gidince ilgi de azaldı. Bir yerin çekiciliği <b>görünür hayata</b> bağlıdır.</p>
+<div class="q" data-q="c1b"></div><div class="q" data-q="c1c"></div></div>
+
+<div class="card"><h3><span class="no">1.3</span>Dış mekânın kalitesi</h3>
+<p>Planlama, bir yeri kaç kişinin kullanacağını, ne kadar kalacağını ve hangi etkinliklerin mümkün olacağını etkiler. Bir yanda ayrılmış işlevler, otomobil hâkimiyeti ve az durma noktası vardır (insanlar iç mekânlar arasında koşturur); diğer yanda yakın hedefler ve iyi yürüme-kalma koşulları.</p>
+<p>Mekân iyileşince <b>bastırılmış talep</b> ortaya çıkar:</p>
+<div class="stat"><div><b>Kopenhag</b><small>Yaya sokakları ve meydanlar genişledi → nüfus artmadan oturma ve ayakta durma büyük ölçüde arttı.</small></div><div><b>+%88</b><small>Melbourne: oturma yerleri iki katına çıkınca oturma etkinliği %88 arttı.</small></div><div><b>Appleyard &amp; Lintell</b><small>San Francisco: trafik arttıkça dışarıdaki etkinlik ve komşu temasları azaldı.</small></div></div>
+<p class="note">Not: Bu sayılar kitaptaki tarihsel örneklerdir, güncel ölçümler değildir.</p>
+<p>Ders: <b>Mevcut kullanım, mevcut ihtiyaç demek değildir.</b> Boş bir meydan yalnızca kötü olduğu için boş olabilir. Strøget yayalaştırılırken eleştirmenler “Danimarkalılar dışarıda şehir hayatı yaşamaz” demişti; başarısı, davranışı kısıtlayan şeyin kötü fiziksel koşullar olduğunu gösterdi. Bugün olanı değil, daha iyi koşulların mümkün kılacağını planla.</p>
+<div class="q" data-q="c1d"></div><div class="q" data-q="c1e"></div></div>
+
+<div class="card"><h3><span class="no">1.4</span>Mimari eğilimler</h3>
+<div class="compare"><div><h4>Ortaçağ · Siena</h4>Kentler zamanla, kullanım içinde, yaya hızında ve insan ölçeğinde şekillendi. <b>Piazza del Campo</b>: çevrelenmişlik, eğimli zemin, iklime göre yönlenme ve yerleştirilmiş öğeler toplanmayı ve kalmayı destekler. Önemli olan görünüş değil, <b>biçim–kullanım ilişkisi</b>.</div><div><h4>Rönesans · Palmanova</h4>Şehir, kompozisyonu yapılmış görsel bir nesne olarak düşünüldü: geometri, simetri, perspektif, anıt. <b>Palmanova</b>’nın resmî sokakları ve dev merkezi meydanı, geometrik düzen ile sosyal kullanım arasındaki boşluğu gösterir.</div></div>
+<p><b>İşlevselcilik (functionalism)</b> sağlıklı ve verimli bir çevre hedefledi: güneş, hava, açık alan, sanayiden uzaklık. Bu hedefler geçerliydi ama insan ihtiyaçlarına dar bakıyordu: binalar birbirinden uzaklaştı, işlevler bölgelere ayrıldı, sokak ve meydanların yerini yollar, patikalar ve büyük çimler aldı; insanların yoğunlaşması azaldı.</p>
+<div class="key">Açık alan kendiliğinden hayat yaratmaz; konumu, boyutu, erişimi ve binalarla ilişkisi belirleyicidir. Müstakil banliyöler iyi özel bahçeler sunar ama ortak hayat zayıftır (mesafe, trafik, sokak tasarımı). Ne görsel kompozisyon ne de fizyolojik verimlilik yeterlidir; sosyal ve rekreatif hayat <b>bilinçli olarak tasarlanmalıdır</b>.</div>
+<div class="q" data-q="c1f"></div><div class="q" data-q="c1g"></div></div>
+
+<div class="card"><h3><span class="no">1.5</span>Günümüzün sosyal koşulları</h3>
+<p>Elektronik iletişim ve otomobiller alternatifler sunar ama <b>ortak kamusal deneyimi</b> sunmaz: plansız karşılaşmalar, kendi çevren dışındaki insanlar, davet beklemeden katılım. Küçülen haneler, yaşlanan nüfus, yaşlılar için daha fazla boş zaman ve daha az sosyal-yaratıcı deneyim sunan işler, kamusal mekânı alışveriş ve ulaşımın ötesinde önemli kılar. <b>Fırsatlar değişince alışkanlıklar da değişir.</b></p>
+<div class="q" data-q="c1h"></div>
+<div class="lesson"><b>Bölüm dersi:</b> Çevre kalitesi en çok özgürce seçilen etkinliklerde görünür. İyi mekân hem pratik hareketi hem de gönüllü katılımı destekler.</div></div></section>
+
+<section class="ch" id="ch2"><div class="chhead"><span>Bölüm 2</span><h2>Planlamanın Ön Koşulları</h2></div>
+<div class="card"><h3><span class="no">2.1</span>Süreçler ve projeler</h3>
+<p>Tasarım güven, arkadaşlık ya da topluluk <b>yaratamaz</b>; bunlar ortak ilgi ve sorunlardan doğar. Ama tasarım bunlar için <b>koşulları</b> yaratır: komşuları bir araya getiren güzergâhlar, durulabilecek girişler, ortak açık alanlar. Engeller ve kötü erişim ise bunları zorlaştırır.</p>
+<p>Sosyal hiyerarşi (hane → küçük konut grubu → mahalle → şehir) mekâna yansıtılabilir: küçük bir grup bir avluyu paylaşır, birkaç grup daha büyük bir tesisi. Danimarka’daki <b>Tinggården</b> konut projesi, gruplamayı farklı ölçeklerdeki ortak tesislerle uyumlu hale getirir. Karşı örnek: hane net ama çevredeki ortak alan belirsiz; “herkese ait” arazi hiçbir gruba onu kullanmak ya da sahiplenmek için neden vermez.</p>
+<p>Mahremiyet dereceleri: <b>özel (private), yarı özel (semiprivate), yarı kamusal (semipublic), kamusal (public)</b>. Ara mekânlar evden kamusal alana kademeli geçiş sağlar. Net bölgeler tanıdıklığı, sorumluluğu ve gözetimi destekler, ama sınırlar <b>geçirgen</b> kalmalıdır.</p>
+<div class="q" data-q="c2a"></div><div class="q" data-q="c2b"></div></div>
+
+<div class="card"><h3><span class="no">2.2</span>Duyular, iletişim ve boyutlar</h3>
+<p>İnsan yaklaşık <b>5 km/s</b> yürür; duyuları öne ve yataya ayarlıdır. Görüş alanı yatayda dikeyden daha geniştir; bu yüzden en önemli kat <b>zemin kattır</b> (döşeme, girişler, göz hizasındaki cepheler, insanlar). Üst katlar yalnızca arka plandır.</p>
+<svg viewBox="0 0 640 120" width="100%" role="img" aria-label="Mesafe ölçeği"><line x1="20" y1="60" x2="620" y2="60" stroke="#14213d" stroke-width="2"/><circle cx="20" cy="60" r="7" fill="#c8963e"/><text x="20" y="40" font-size="13" fill="#14213d">sen</text><line x1="110" y1="50" x2="110" y2="70" stroke="#14213d" stroke-width="2"/><text x="80" y="92" font-size="13" fill="#14213d">20–25 m</text><text x="60" y="110" font-size="11" fill="#5d6370">yüz ifadesi, duygu</text><line x1="560" y1="50" x2="560" y2="70" stroke="#14213d" stroke-width="2"/><text x="530" y="92" font-size="13" fill="#14213d">~100 m</text><text x="440" y="110" font-size="11" fill="#5d6370">sosyal görüş alanı: figür, hareket</text></svg>
+<p>Uzakta yalnızca figürleri ve genel hareketleri görürüz; yaklaştıkça bireyleri, yüzleri, duyguları seçer, konuşabiliriz. <b>Sosyal görüş alanı yaklaşık 100 m</b>, <b>yüz ifadesi yaklaşık 20–25 m</b>. Aşırı büyük meydanlar uzaktaki figürlerin farkındalığını verir ama az anlam sunar. İşitme yakınlık ve sessizlik ister. <b>Edward T. Hall</b>’ün mesafeleri: mahrem, kişisel, sosyal, kamusal (kültüre bağlıdır, evrensel değildir). İnsanlar etkileşimi mesafeyle ayarlar (yaklaşır, geri çekilir); tasarım bu ayarı mümkün kılmalı: zorunlu yakınlık rahatsız eder, aşırı ayrılık teması engeller.</p>
+<table class="rep"><tr><th>Etken</th><th>Teması engeller</th><th>Teması kolaylaştırır</th></tr><tr><td>Engeller</td><td>Duvarlar</td><td>Engel yok</td></tr><tr><td>Mesafe</td><td>Uzun</td><td>Kısa</td></tr><tr><td>Hız</td><td>Yüksek</td><td>Düşük</td></tr><tr><td>Seviye</td><td>Çok katlı / farklı seviye</td><td>Aynı seviye</td></tr><tr><td>Yönlenme</td><td>Sırt sırta</td><td>Yüz yüze / etkinliğe bakış</td></tr></table>
+<div class="q" data-q="c2c"></div><div class="q" data-q="c2d"></div></div>
+
+<div class="card"><h3><span class="no">2.3</span>Süreç: insanlar insanları çeker</h3>
+<p>Kendini besleyen bir süreç vardır: oynayan çocuklara başka çocuklar katılır, birkaç kişinin oturduğu meydan davetkâr görünür. Tersi de olur: dağınık olaylar birbirini uyarmaz; boş yer → insanlar gider → daha da boşalır. Çok sakin olması görünür hayat demek değildir.</p>
+<div class="key"><b>Etkinlik düzeyi = olay sayısı × süre (events × duration).</b> Kısa kalan 30 kişi, uzun kalan 3 kişiye eşit olabilir. Kalabalık ama yalnızca geçilen bir yer boş hissettirebilir; uzun oturan birkaç kişi ise canlı. Yavaş hareket insanları arabalardan daha uzun süre görünür tutar. <b>Daha uzun kalmayı teşvik etmek</b>, ziyaretçi sayısı artmasa bile çok güçlüdür.</div>
+<div class="q" data-q="c2e"></div><div class="q" data-q="c2f"></div>
+<div class="lesson"><b>Bölüm dersi:</b> Algılanabilir mesafeler, yönetilebilir geçişler ve insanların kalmasını sağlayan koşullar.</div></div></section>
+
+<section class="ch" id="ch3"><div class="chhead"><span>Bölüm 3</span><h2>Toplamak ya da Dağıtmak — Şehir ve Alan Planlaması</h2></div>
+<div class="pairs"><div><b>Toplamak</b>ya da dağıtmak</div><div><b>Bütünleştirmek</b>ya da ayırmak</div><div><b>Davet etmek</b>ya da itmek</div><div><b>Açmak</b>ya da kapatmak</div></div>
+<div class="card"><h3><span class="no">3.1</span>Toplamak ya da dağıtmak <span class="term">(assemble or disperse)</span></h3>
+<p>Yoğunlaşma her yerde gerekmez; şehirlerin sessizliğe ve mahremiyete de ihtiyacı vardır. Ama modern planlama aşırı dağıtır. Görev, insanları ve etkinlikleri <b>işe yarar ilişkiler</b> içinde bir araya getirmektir. Yoğunluk tek başına yetmez: girişleri ters yöne bakan, yolları bölünmüş, zemin katı ölü yoğun bir proje zayıf hayat üretir.</p>
+<p><b>Şehir ölçeği:</b> konut, iş, hizmet ve rekreasyonun bölgelere ayrılması mesafeleri artırır. <b>Alan ölçeği:</b> bina yerleşimi ve giriş yönü hareketin birleşip birleşmeyeceğini belirler. <b>Detay ölçeği:</b> cepheler, kapılar, dış mekân boyutları. Ölçekler birbirine bağlıdır: güzel banklar yalıtılmış bir konumu kurtaramaz; iyi bir yapı kötü detayla bozulabilir.</p>
+<p>Sokaklar doğrusal yürüyüş içindir, meydanlar toplanma ve genel bakış için. Aşırı büyük mekânlar etkinliği seyrek gösterir ve duyu menzilini aşar; büyük alanların içinde ağaçlar, bitkiler ve pavyonlarla <b>daha küçük ortamlar</b> yarat. Cepheler: dar birimler ve sık kapılar bir <b>olaylar dizisi</b> oluşturur; uzun sağır cepheler olayları dağıtır. Büyük işlevlerde kamusal kısmı sokağa ver, büyük hacimleri arkaya ya da yukarıya al. Dikey dağılım: aynı seviye en kolayıdır; yükseltilmiş yaya köprüleri ve gömük mekânlar kopuktur.</p>
+<div class="q" data-q="c3a"></div><div class="q" data-q="c3b"></div></div>
+
+<div class="card"><h3><span class="no">3.2</span>Bütünleştirmek ya da ayırmak <span class="term">(integrate or segregate)</span></h3>
+<p>Gehl tek işlevli alanları (konut bölgeleri, sanayi bölgeleri, yalıtılmış kampüsler) eleştirir. Bütünleşme çeşitli bir hayat ve topluma dair anlayış sağlar. Ama planda karma kullanım gerçek bütünleşme demek değildir: insanlar <b>güzergâhları ve mekânları paylaşmalıdır</b> (çitlerin arkasındaki okul, içe dönük kurum bütünleşmiş sayılmaz).</p>
+<div class="compare"><div><h4>Kopenhag Üniversitesi</h4>Tarihi kentin içinde; öğrenciler ve kent hayatı iç içe.</div><div><h4>Danimarka Teknik Üniversitesi</h4>Ayrı bir kampüs; şehir hayatından kopuk.</div></div>
+<p>Uyumluluk her durumda ayrı değerlendirilmelidir. Trafik: hızlı arabalar hayatı zayıflatır; Hollanda’daki <b>woonerf</b> modelinde arabalar yavaş gider, öncelik yayanındır. Bütünleşme, <b>paylaşımın koşullarına</b> bağlıdır.</p>
+<div class="q" data-q="c3c"></div></div>
+
+<div class="card"><h3><span class="no">3.3</span>Davet etmek ya da itmek <span class="term">(invite or repel)</span></h3>
+<p>Davet eden koşullar: <b>kademeli geçişler, görünürlük, kısa güzergâhlar, hedefler ve yapacak bir şey</b>. Verandalar, ön bahçeler ve korunaklı girişler insanların kısa süreliğine dışarı çıkıp kalıp kalmayacağına karar vermesini sağlar. Görünür oyun arkadaşları çocukları çeker; görünür topluluk etkinlikleri insanları çeker. Kendiliğinden etkinlikler merdivenler ve uzun yollar karşısında kaybolur.</p>
+<p>Hedefler (dükkânlar, oyun alanları, kafeler, posta kutuları, ortak tesisler) karşılaşma üretir; alışveriş pratik ve sosyal güdüleri karıştırır. <b>Yapacak bir şey</b> (bahçe işleri, tamirat, ev işleri) uzun dışarıda kalmayı destekler ve sohbet konusu verir.</p>
+<div class="q" data-q="c3d"></div></div>
+
+<div class="card"><h3><span class="no">3.4</span>Açmak ya da kapatmak <span class="term">(open up or close in)</span></h3>
+<p>Görsel bağlantılar, dışarıdakilerin iş, öğrenme ve dinlenmeyi görmesini, içeridekilerin de bağlantıda kalmasını sağlar. Pencere tek başına yetmez: mesafe, seviye, yönlenme ve etkinliğin içeride nerede durduğu önemlidir. Kaldırıma yakın bir kütüphane okuyanları gösterir; geri çekilmiş bir kütüphane uzak bir cephedir. Açıklık seçici olmalıdır (mahremiyet, konsantrasyon).</p>
+<p>Gehl kamusal hayatın özel iç mekânlara taşınmasını (alışveriş pasajları, kapalı plazalar) eleştirir: içerisi canlı, dış cephe ölü. Ulaşım: özel garaja arabayla girmek ortak yolculuğu ortadan kaldırır; otoparktan eve yürümek karşılaşma yaratır.</p>
+<div class="q" data-q="c3e"></div><div class="q" data-q="c3f"></div>
+<div class="lesson"><b>Bölüm dersi:</b> Etkinliklerin nerede buluştuğu, insanların ne algıladığı ve ortamlar arasında ne kadar kolay geçtikleri.</div></div></section>
+
+<section class="ch" id="ch4"><div class="chhead"><span>Bölüm 4</span><h2>Yürümek İçin Mekânlar, Kalmak İçin Yerler — Detay Planlaması</h2></div>
+<div class="card"><h3><span class="no">4.1</span>İnsanları getirmek yalnızca başlangıç</h3>
+<p>İnsanları bir yere getirmek işin başıdır; ardından <b>yürümeyi, durmayı, oturmayı, görmeyi, duymayı ve konuşmayı</b> desteklemek gerekir. Bunlar daha karmaşık hayatın temelidir: toplanmalar varmak ve kalmak için yollar ister; oyun yakında yetişkinler ister; sohbet doğru mesafe ve ses koşulları ister.</p>
+<div class="q" data-q="c4a"></div></div>
+
+<div class="card"><h3><span class="no">4.2</span>Yürümek</h3>
+<p>Yürümek hem <b>ulaşım hem deneyimdir</b>. Yeterli alan gerekir ama aşırı genişlik samimiyeti kaybettirir. Kalabalık; çocukları, yaşlıları ve hareket kısıtlılarını daha çok etkiler. Yüzey önemlidir: engebeli, gevşek, kaygan ya da bakımsız güzergâhlar. Tekerlekli sandalyeler ve bebek arabaları engelleri görünür kılar.</p>
+<p><b>Gerçek mesafe ile algılanan mesafe</b> farklıdır: uzun, açıkta ve monoton bir güzergâh, korunaklı, çeşitli ve bölümlere ayrılmış bir güzergâhtan daha uzun hissettirir. İnsanlar doğrudan yolu seçer; dolambaçlar davranışla çatışır; kestirmeler gerçek <b>arzu çizgilerini (desire lines)</b> gösterir. Seviye değişimleri (merdiven, köprü, alt geçit) özellikle araba konforu için yapıldığında yürüyüşü caydırır.</p>
+<div class="q" data-q="c4b"></div><div class="q" data-q="c4c"></div></div>
+
+<div class="card"><h3><span class="no">4.3</span>Ayakta durmak ve kenar etkisi <span class="term">(edge effect)</span></h3>
+<p>Kısa duraklamalar her yerde olur; uzun kalışlar seçicidir. İnsanlar cephelerin, kolonların, kapı aralıklarının yanında durur: <b>kendini açık etmeden gözlemler</b>, sırtı korunur, akışın dışında kalır ve teması ayarlayabilir. Destekler: bir baba, alçak bir duvar, bir ağaç, bir girinti. Etkinlik <b>kenarlardan merkeze</b> doğru büyür; büyük boş yüzeylerin başlangıç noktası yoktur. Düzensiz cepheler, nişler ve korunaklı girişler kalmayı zenginleştirir.</p>
+<div class="q" data-q="c4d"></div></div>
+
+<div class="card"><h3><span class="no">4.4</span>Oturmak</h3>
+<p>Oturacak yer yoksa insanlar yürümeye devam eder; okumak, yemek, izlemek, konuşmak ve dinlenmek oturma yeri ister. <b>Bank sayısı kalite değildir</b>: yerleşim, yönlenme, konfor ve iklim önemlidir. Tercih edilen yerler sınırlarda, sırtı korunan ve iyi manzaralı yerlerdir; açıkta, ortada değil. Gençler basamakları ve alçak duvarları kullanır; yaşlılar kolay oturulup kalkılan oturma yerlerine ihtiyaç duyar.</p>
+<div class="compare"><div><h4>Birincil oturma (primary seating)</h4>Banklar, sandalyeler.</div><div><h4>İkincil oturma (secondary seating)</h4>Basamaklar, setler, alçak duvarlar.</div></div>
+<p>İkisi de yararlıdır. Çok amaçlı <b>“oturma peyzajları”</b>: Sidney Opera Binası basamakları, Portland’daki Pioneer Courthouse Square. Güzergâhlar boyunca dinlenme yerleri, yürüme kapasitesini uzatır.</p>
+<div class="q" data-q="c4e"></div><div class="q" data-q="c4f"></div></div>
+
+<div class="card"><h3><span class="no">4.5</span>Görmek, duymak, konuşmak</h3>
+<p><b>Görmek:</b> mesafe, engelsiz görüş ve aydınlatma; yürüme yolları ile kalma alanları arasında görüş bağlantısı. <b>Duymak:</b> trafik gürültüsü sohbeti öldürür; daha iyi akustik sosyal etkinliği genişletir. <b>Konuşmak:</b> yan yana dizili oturma yerleri göz temasını zorlaştırır; açılı ya da ortak bir yüzey etrafında düzenlenmiş oturma yardımcı olur. <b>Üçgenleme (triangulation):</b> bir gösteri, sanat eseri ya da sıra dışı bir etkinlik yabancılara konuşacak bir konu verir. Etkileşim, yalnızca aynı yerde bulunmaktan fazlasını ister.</p>
+<div class="q" data-q="c4g"></div></div>
+
+<div class="card"><h3><span class="no">4.6</span>Her açıdan hoş</h3>
+<p><b>Trafikten korunma:</b> korku davranışı kısıtlar (ebeveynler çocukları sınırlar, yaşlılar karşıya geçmekten kaçınır), istatistiksel risk düşük olsa bile. <b>Suç ve güvensizlik algısı:</b> kamusal varlık, binalardan görüş ve ortak alanlara sahip çıkma gözetim sağlar. <b>İklim:</b> rüzgâr, gölge, güneş, yağmur, sıcaklık; yüksek, tek başına duran binalar rüzgârı aşağı indirir; korunaklı düzenler rahattır. Genel iklim ile belirli bir bankın <b>mikroikliminin</b> farkını gör. İyi havanın keyfini koru (güneş, gölge, mevsimler, bitki örtüsü). Yerel iklim ve kültür farklıdır (İskandinavya ile Güney Avrupa). Güzellik ve yer duygusu kalmayı zenginleştirir: görsel kaliteyi konforla birleştir.</p>
+<div class="q" data-q="c4h"></div></div>
+
+<div class="card"><h3><span class="no">4.7</span>Yumuşak kenarlar <span class="term">(soft edges)</span></h3>
+<div class="compare"><div><h4>Sert kenar (hard edge)</h4>Yalnızca içeri / dışarı. Durmaya, oturmaya yer yok.</div><div><h4>Yumuşak kenar (soft edge)</h4>Duraklamak, oturmak, çalışmak, izlemek, etkileşmek: verandalar, küçük ön bahçeler, korunaklı kapı önleri, giriş bankları, teraslar.</div></div>
+<p>Üç koşul: <b>içeri-dışarı kolay hareket, hemen dışarıda iyi yerler, orada anlamlı bir etkinlik</b>. Yumuşak kenarlar kısa, kendiliğinden ziyaretleri destekler (elinde bir içecekle dışarı çıkmak, çiçek sulamak, sokağı izlemek, sohbet etmek) ve bunlar uzun kalışlara dönüşür. Konut sokağı çalışmaları: gelip gitmeler <b>çok sayıda olay</b>, durağan etkinlikler ise dışarıda <b>çok daha fazla toplam zaman</b> demektir. Kullanılabilir ön bahçeli mütevazı bir sokak, kalma yeri olmayan büyük bir projeden daha canlıdır. Melbourne’deki verandalar, ön bahçeler ve alçak çitler oturmayı, çalışmayı ve sohbeti destekler; boyutlar biraz mahremiyet verirken sokağa yakın kalır. Mevcut binalara da uygulanabilir: daha iyi girişler, büyük ortak alanları bölmek, hareketin yakınına kalma yerleri eklemek.</p>
+<div class="q" data-q="c4i"></div><div class="q" data-q="c4j"></div>
+<div class="lesson"><b>Bölüm dersi:</b> Hayat, yürümeyi, durmayı, oturmayı, gözlemlemeyi ve katılmayı sağlayan beden ölçeğindeki hassas koşullara bağlıdır.</div></div></section>
+
+<section class="ch" id="ozet"><div class="chhead"><span>Tasarım Özeti</span><h2>Kitabın tamamı tek sayfada</h2></div>
+<div class="summary">
+<p><b>Ana fikir:</b> Binaları ve mekânları, mümkün kıldıkları hayatlarla değerlendir. Her projede üç soru sor:</p>
+<div class="three"><div><b>1</b>Ulaşabiliyor mu?<br><small>İnsanlar mekâna rahatça ulaşıp onu kullanabiliyor mu?</small></div><div><b>2</b>Kalabiliyor mu?<br><small>Mekân orada kalmak için nedenler veriyor mu?</small></div><div><b>3</b>Görünür mü?<br><small>Etkinlikler başkalarına görünür ve erişilebilir olabiliyor mu?</small></div></div>
+<div class="scales"><div><span class="lvl">Ölçek 1</span><h4>Şehir</h4><ul><li>İşlevleri ayırma, karıştır ve paylaştır</li><li>Mesafeleri kısa tut, toplanmayı planla</li><li>Trafiği yavaşlat (woonerf)</li><li>Kamusal hayatı içeri kapatma</li></ul></div><div><span class="lvl">Ölçek 2</span><h4>Alan</h4><ul><li>Girişleri ortak güzergâha yönlendir</li><li>Özel → yarı özel → yarı kamusal → kamusal</li><li>Mekânları ~100 m / 20–25 m algı menziline göre boyutlandır</li><li>Aynı seviye; köprü/alt geçitten kaçın</li><li>Dar birimler, sık kapılar, aktif zemin kat</li></ul></div><div><span class="lvl">Ölçek 3</span><h4>Detay</h4><ul><li>Kenar etkisi: sırtı korunan durma yerleri</li><li>Birincil + ikincil oturma, manzaraya dönük</li><li>Sohbete uygun açılı oturma, düşük gürültü</li><li>Rüzgâr, güneş, gölge — mikroiklim</li><li>Yumuşak kenarlar: veranda, ön bahçe, bank</li></ul></div></div>
+<svg viewBox="0 0 640 140" width="100%" role="img" aria-label="Olay çarpı süre"><rect x="10" y="20" width="190" height="100" fill="#14213d"/><text x="105" y="62" fill="#fff" text-anchor="middle" font-size="15">Olay sayısı</text><text x="105" y="84" fill="#c8963e" text-anchor="middle" font-size="12">kaç kişi geliyor?</text><text x="225" y="78" font-size="28" fill="#14213d">×</text><rect x="255" y="20" width="190" height="100" fill="#2b2d33"/><text x="350" y="62" fill="#fff" text-anchor="middle" font-size="15">Süre</text><text x="350" y="84" fill="#c8963e" text-anchor="middle" font-size="12">ne kadar kalıyor?</text><text x="465" y="78" font-size="28" fill="#14213d">=</text><rect x="495" y="20" width="135" height="100" fill="#fff" stroke="#c8963e" stroke-width="2"/><text x="562" y="66" fill="#14213d" text-anchor="middle" font-size="15">Görünür</text><text x="562" y="86" fill="#14213d" text-anchor="middle" font-size="15">hayat</text></svg>
+<p><b>Etkinlik türleri:</b> zorunlu (her koşulda) · isteğe bağlı (yalnızca iyi koşulda) · sosyal (ikisinden doğar). <b>Dört karşıtlık:</b> topla, bütünleştir, davet et, aç. <b>Mimarlık öğrencisi için:</b> biçimin ötesine bak; hareket, algı, zaman ve sosyal fırsat üzerine düşün. İnsanların gerçekte ne yaptığını ve tasarımın neyi zorlaştırdığını, rahatlattığını, mümkün kıldığını gözlemle. Bir kapı önünde duraklama, oyunu izleyen bir çocuk, bahçesiyle uğraşan bir komşu: bu sıradan davranışlar birlikte şehir hayatını oluşturur.</p>
+<div class="q" data-q="fin"></div></div></section>
+
+<section class="ch" id="rapor"><div class="chhead"><span>Son Rapor</span><h2>Senin sonuçların</h2></div>
+<div class="card"><div id="report"></div>
+<div class="form"><label for="stuName">Ad Soyad *</label><input id="stuName" autocomplete="name"><label for="stuEmail">E-posta (isteğe bağlı)</label><input id="stuEmail" type="email" autocomplete="email">
+<button class="primary" id="sendBtn" onclick="sendAnswers()">Işıl Tabağ'a Gönder</button><div id="sendMsg" role="status"></div></div></div></section>
+</main>
+<footer>Jan Gehl, <i>Life Between Buildings: Using Public Space</i> · Okuma özeti: Işıl Tabağ</footer>
+<script>
+const CH={f:'Önsöz',c1:'Bölüm 1',c2:'Bölüm 2',c3:'Bölüm 3',c4:'Bölüm 4',fi:'Tasarım Özeti'};
+const NEC='Zorunlu',OPT='İsteğe bağlı',SOC='Sosyal';
+const Q={
+f1:{lab:'Senaryo',q:'Bir konut projesinin jürisinde biri şöyle diyor: “Daireler güneş alıyor, havalandırma mükemmel, yollar verimli. Proje başarılı.” Gehl ne derdi?',o:['Katılırdı; işlevselciliğin hedefleri yeterlidir.','Eksik derdi; binaların arasında insanların karşılaşıp kalabileceği koşullar da değerlendirilmeli.','Yalnızca cephelerin daha estetik olmasını isterdi.'],a:1,fb:['Bu hedefler geçerli ama Gehl’in eleştirisi tam da burada: işlevselcilik binaların arasındaki hayatı görmedi.','Doğru. Mimarlık, binanın günlük hayat için yarattığı koşulları da kapsar.','Gehl görünüşten çok kullanımla ilgilenir: hareket, duraklama, temas.']},
+c1a:{lab:'Senaryo',q:'Bir caddede günün her saati çok yaya var ama kimse durmuyor, oturmuyor. Belediye “Burası çok başarılı bir kamusal alan” diyor. En iyi yorum hangisi?',o:['Haklılar; yaya sayısı başarıyı kanıtlar.','Bu yayalar büyük olasılıkla zorunlu etkinlik yapıyor; asıl ölçü isteğe bağlı kalışlardır.','Cadde fazla kalabalık; yayaları azaltmak gerekir.'],a:1,fb:['Zorunlu etkinlikler kötü çevrede bile olur; yaya sayısı tek başına kanıt değildir.','Doğru. Çevre kalitesi en çok özgürce seçilen etkinliklerde görünür.','Sorun kalabalık değil; insanlara kalmak için neden verilmemiş.']},
+c1b:{lab:'Bank yerleşimi',q:'Bir parkta iki bank koyacaksın. Hangisi daha çok kullanılır?',o:['Sakin, bitkili bir köşeye bakan bank','Kalabalık bir yürüme yoluna bakan bank'],a:1,fb:['Huzurlu görünse de Gehl’in gözlemlerine göre insanlar insanları izlemeyi tercih eder.','Doğru. İnsanlar dikkat çeker; kafe sandalyeleri de bu yüzden sokağa döner.']},
+c1c:{lab:'Strøget',q:'Strøget çalışmasında sokak sanatçıları ve inşaat işçileri gidince ne oldu?',o:['İnsanlar aynı yerde durmaya devam etti.','Durma ve ilgi azaldı; çekicilik görünür hayata bağlıydı.','Daha fazla insan geldi çünkü alan rahatladı.'],a:1,fb:['Hayır; ilgiyi yaratan mekânın kendisi değil, oradaki etkinlikti.','Doğru. Bir yerin çekiciliği görünür hayata bağlıdır.','Tersine; olay ortadan kalkınca ilgi de söndü.']},
+c1d:{lab:'Bastırılmış talep',q:'Boş bir meydan için “Burada kimse oturmuyor, demek ki oturmaya ihtiyaç yok” deniyor. Gehl’in yanıtı?',o:['Doğru; mevcut kullanım ihtiyacı gösterir.','Mevcut kullanım ihtiyaç demek değildir; meydan kötü olduğu için boş olabilir.','Meydanı küçültüp otopark yapmak gerekir.'],a:1,fb:['Strøget ve Melbourne örnekleri bunun tersini gösterdi.','Doğru. İyileşen koşullar bastırılmış talebi ortaya çıkarır.','Gehl bugün olanı değil, daha iyi koşulların mümkün kılacağını planlamayı önerir.']},
+c1e:{lab:'Veri',q:'Kitaptaki Melbourne örneğinde oturma yerleri iki katına çıkınca oturma etkinliği ne kadar arttı?',o:['%18','%88','%200'],a:1,fb:['Daha fazla. (Tarihsel bir örnek olduğunu unutma.)','Doğru: yaklaşık %88. Arz arttı, talep görünür oldu.','Çok yüksek; iki kat yer, iki kattan fazla kullanım demek değil.']},
+c1f:{lab:'Siena vs Palmanova',q:'Piazza del Campo’yu toplanma yeri yapan asıl şey nedir?',o:['Simetrik geometrisi ve anıtsal perspektifi','Çevrelenmişlik, eğimli zemin, iklime yönlenme ve yerleştirilmiş öğeler: biçim–kullanım ilişkisi','Çok büyük olması'],a:1,fb:['Bu daha çok Rönesans/Palmanova anlayışı; görsel düzen sosyal kullanımı garanti etmez.','Doğru. Görünüş değil, biçimin kullanımla ilişkisi.','Büyüklük değil; Palmanova’nın dev meydanı tam tersini gösterir.']},
+c1g:{lab:'İşlevselcilik',q:'Bir projede binalar geniş çimlerle birbirinden ayrılmış. “Bol açık alan var, hayat kendiliğinden olur” deniyor. Doğru mu?',o:['Evet, açık alan hayat demektir.','Hayır; konum, boyut, erişim ve binalarla ilişki belirleyicidir.'],a:1,fb:['Gehl’e göre açık alan kendiliğinden hayat yaratmaz; dağınıklık yoğunlaşmayı azaltır.','Doğru. Sosyal hayat bilinçli olarak tasarlanmalıdır.']},
+c1h:{lab:'Günümüz',q:'Herkesin telefonu ve arabası varken kamusal mekân neden hâlâ önemli?',o:['Önemli değil; dijital iletişim onun yerini aldı.','Plansız karşılaşma, çevren dışındaki insanlar ve davetsiz katılım gibi ortak kamusal deneyimi yalnızca o sunar.','Sadece alışveriş için gerekli.'],a:1,fb:['Dijital araçlar alternatif sunar ama ortak kamusal deneyimi sunmaz.','Doğru. Küçülen haneler ve yaşlanan nüfusla bu daha da önemli hale geliyor.','Gehl kamusal mekânın alışveriş ve ulaşımın ötesinde önemli olduğunu vurgular.']},
+c2a:{lab:'Hiyerarşi',q:'Bir sitede herkes için tek, dev bir çim alan var ve kimse kullanmıyor. Gehl’in Tinggården örneğine göre çözüm?',o:['Alanı daha da büyütmek','Küçük konut gruplarının paylaştığı avlular ve birkaç grubun paylaştığı daha büyük tesislerle kademeli ortak alanlar yaratmak','Alanı tamamen çitle kapatmak'],a:1,fb:['“Herkese ait” alan hiçbir gruba sahiplenme nedeni vermez.','Doğru. Sosyal hiyerarşi mekâna yansıtılınca sahiplenme ve kullanım artar.','Net bölgeler iyidir ama sınırlar geçirgen kalmalı.']},
+c2b:{lab:'Mahremiyet dereceleri',q:'Bir apartman girişinin önündeki, sakinlerin paylaştığı küçük bahçe hangi kategoriye en çok uyar?',o:['Özel (private)','Yarı özel / yarı kamusal ara mekân','Tamamen kamusal (public)'],a:1,fb:['Tek bir haneye ait değil.','Doğru. Bu tür ara mekânlar evden sokağa kademeli geçiş sağlar.','Belirli bir grup paylaşır; tam kamusal değildir.']},
+c2c:{lab:'Mesafe',q:'Bir açık amfi tasarlıyorsun; izleyiciler sahnedekilerin yüz ifadesini görebilsin istiyorsun. En arka sıra sahneden en fazla yaklaşık ne kadar uzakta olmalı?',o:['~100 m','~20–25 m','~250 m'],a:1,fb:['100 m sosyal görüş alanı: figür ve hareket görülür, yüz ifadesi değil.','Doğru. Yüz ifadesi ve duygu yaklaşık 20–25 m’ye kadar okunur.','Bu mesafede insanları seçmek bile zordur.']},
+c2d:{lab:'Teması kolaylaştır',q:'Hangi düzen teması en çok kolaylaştırır?',o:['Duvarlarla ayrılmış, farklı seviyelerde, sırt sırta oturma','Engelsiz, kısa mesafe, düşük hız, aynı seviye, yüz yüze ya da etkinliğe bakan','Hızlı bir yol boyunca uzun aralıklarla yerleştirilmiş banklar'],a:1,fb:['Bunların hepsi teması engelleyen etkenler.','Doğru. Beş etkenin hepsi temas yönünde.','Yüksek hız ve uzun mesafe teması zorlaştırır.']},
+c2e:{lab:'Mini hesap: olay × süre',q:'A meydanından günde 300 kişi geçiyor, her biri ortalama 1 dakika kalıyor. B meydanına 30 kişi geliyor, her biri ortalama 20 dakika kalıyor. Hangisinde dışarıda geçirilen toplam zaman daha fazla?',o:['A (300 kişi-dakika)','B (600 kişi-dakika)','Eşit'],a:1,fb:['300 × 1 = 300; B ise 30 × 20 = 600. Kalabalık geçiş, canlılık demek değil.','Doğru: 30 × 20 = 600 > 300 × 1 = 300. Süre, sayı kadar güçlüdür.','Hesabı tekrar yap: 300×1 ve 30×20.']},
+c2f:{lab:'Kalış süresi',q:'Bütçen kısıtlı ve ziyaretçi sayısını artıramıyorsun. Bir meydanı daha canlı göstermenin en güçlü yolu?',o:['Daha büyük bir tabela koymak','İnsanların daha uzun kalmasını sağlamak (oturma, gölge, yapacak şey)','Yürüme yollarını genişletip hızlı geçişi kolaylaştırmak'],a:1,fb:['Tabela kalmak için neden vermez.','Doğru. Etkinlik düzeyi = olay × süre; süreyi artırmak ziyaretçi artmasa bile etkilidir.','Hızlı geçiş, insanları daha kısa süre görünür tutar.']},
+c3a:{lab:'Ölçekler',q:'Çok güzel tasarlanmış banklar, kimsenin geçmediği yalıtılmış bir köşeye konmuş. Gehl’e göre sorun hangi ölçekte?',o:['Detay ölçeğinde; banklar daha konforlu olmalı','Şehir/alan ölçeğinde; iyi detay kötü konumu kurtaramaz','Sorun yok'],a:1,fb:['Detay iyi; ama ölçekler birbirine bağlıdır.','Doğru. Ölçekler birbirine bağlı: konum yanlışsa detay yetmez.','İnsanlar oraya hiç gelmiyorsa bank boş kalır.']},
+c3b:{lab:'Cephe',q:'Bir alışveriş merkezini şehir sokağına yerleştiriyorsun. Hangisi Gehl’e daha uygun?',o:['Sokağa 120 m’lik sağır duvar, girişi otoparktan','Sokağa dar birimler ve sık kapılar; büyük hacimler arkada ya da üstte','Sokak seviyesinden yükseltilmiş yaya köprüsüyle giriş'],a:1,fb:['Uzun sağır cepheler olayları dağıtır ve sokağı öldürür.','Doğru. Dar birimler bir olaylar dizisi yaratır; kamusal kısım sokağa dönük.','Seviye değişimi kopukluk yaratır; aynı seviye en kolayıdır.']},
+c3c:{lab:'Woonerf',q:'Dar bir konut sokağında çocuklar dışarıda oynayamıyor çünkü arabalar hızlı geçiyor. Woonerf yaklaşımı ne önerir?',o:['Arabaları tamamen yasaklamak','Arabaların yavaş gittiği, yayanın öncelikli olduğu paylaşılan sokak','Yayaları alt geçide almak'],a:1,fb:['Woonerf yasaklamaz; paylaşımın koşullarını değiştirir.','Doğru. Bütünleşme, paylaşımın koşullarına bağlıdır.','Alt geçit yürüyüşü caydırır ve sokak hayatını öldürür.']},
+c3d:{lab:'Davet etmek',q:'Bir yurt binası için hangi giriş daha davetkâr?',o:['Doğrudan kaldırıma açılan, saçaksız tek bir kapı','Saçaklı, önünde oturma yeri ve küçük bir ön alan olan, sokağa kademeli geçiş sunan giriş','Bir kat merdivenle çıkılan yükseltilmiş giriş'],a:1,fb:['Burada kısa süreliğine dışarı çıkıp karar verecek bir ara alan yok.','Doğru. Kademeli geçiş insanların dışarı çıkıp kalmasına izin verir.','Merdiven kendiliğinden etkinlikleri kaybettirir.']},
+c3e:{lab:'Açmak',q:'Yeni bir mahalle kütüphanesi: okuma salonu nerede olmalı?',o:['Kaldırıma yakın, zemin katta, büyük pencereli','Sokaktan 40 m geri çekilmiş, bodrum katta','Arka bahçeye bakan üst katta'],a:0,fb:['Doğru. Kaldırıma yakın kütüphane okuyanları gösterir; içeridekiler de bağlantıda kalır.','Geri çekilmiş, aşağıda kalan kütüphane uzak bir cepheye dönüşür.','Seviye ve yönlenme yanlış; sokaktan görünmez.']},
+c3f:{lab:'Ulaşım',q:'Hangi düzen komşular arasında daha çok karşılaşma yaratır?',o:['Her evin kendi garajından doğrudan içeri girildiği düzen','Ortak otoparktan evlere kısa bir yürüyüşle ulaşılan düzen'],a:1,fb:['Garaja arabayla girmek ortak yolculuğu ortadan kaldırır.','Doğru. Otoparktan eve yürümek karşılaşma yaratır.']},
+c4a:{lab:'Temel etkinlikler',q:'Bir meydana insanları getirmeyi başardın. Gehl’e göre bir sonraki adım?',o:['İş bitti','Yürümeyi, durmayı, oturmayı, görmeyi, duymayı ve konuşmayı desteklemek','Daha çok reklam yapmak'],a:1,fb:['Getirmek yalnızca başlangıçtır.','Doğru. Bunlar daha karmaşık hayatın temelidir.','Gelen insanların kalması için mekân koşulları gerekir.']},
+c4b:{lab:'Arzu çizgisi',q:'Bir kampüste çimlerin üzerinde çapraz bir patika oluşmuş. En iyi tasarım kararı?',o:['Çimi çitle korumak','Patikayı gerçek bir yol olarak düzenlemek; insanlar doğrudan yolu seçer','Bir uyarı tabelası koymak'],a:1,fb:['Dolambaçlar davranışla çatışır; insanlar yine yol bulur.','Doğru. Kestirmeler gerçek arzu çizgilerini gösterir.','Tabela davranışı değiştirmez.']},
+c4c:{lab:'Algılanan mesafe',q:'Aynı uzunlukta iki güzergâh: hangisi daha kısa hissettirir?',o:['Açıkta, düz, monoton bir yol','Korunaklı, çeşitli, bölümlere ayrılmış bir yol'],a:1,fb:['Uzun, açık ve monoton yol daha uzun hissettirir.','Doğru. Gerçek ve algılanan mesafe farklıdır.']},
+c4d:{lab:'Kenar etkisi',q:'Büyük, boş bir meydanda insanlar nerede durmayı tercih eder?',o:['Tam ortada','Cephelerin, kolonların, ağaçların yanında; sırtı korunarak','Yürüyüş akışının içinde'],a:1,fb:['Ortada insanlar kendini açıkta hisseder.','Doğru. Kenar etkisi: açık olmadan gözlemlemek. Etkinlik kenardan merkeze büyür.','Akışın dışında kalmak tercih edilir.']},
+c4e:{lab:'Daha iyi bank yeri',q:'Bir meydanda bank yerini seç:',o:['A: Meydanın tam ortası, her yönden açık','B: Bir ağacın önünde, sırtı korunan, yürüyüş yoluna ve meydana bakan','C: Bir duvara dönük, kuytu köşe'],a:1,fb:['Ortada, açıkta oturmak rahatsızdır.','Doğru. Sınırda, sırtı korunan ve iyi manzaralı yer.','Duvara bakan bank izleme imkânı vermez.']},
+c4f:{lab:'Birincil / ikincil',q:'Bir kütüphane önündeki geniş basamaklar ve alçak setler hangi tür oturmadır?',o:['Birincil oturma (primary seating)','İkincil oturma (secondary seating)'],a:1,fb:['Birincil oturma banklar ve sandalyelerdir.','Doğru. Basamaklar, setler, alçak duvarlar ikincil oturmadır; özellikle gençler kullanır. Yaşlılar için birincil oturma da gerekir.']},
+c4g:{lab:'Konuşmak',q:'Bir bekleme alanında insanların sohbet etmesini istiyorsun. Hangi düzen?',o:['Uzun, düz bir sırada yan yana banklar','Açılı ya da ortak bir masa/yüzey etrafında yerleştirilmiş oturma','Sırt sırta banklar'],a:1,fb:['Yan yana oturma göz temasını zorlaştırır.','Doğru. Açılı oturma göz temasını kolaylaştırır. Bir sanat eseri de üçgenleme yaratabilir.','Sırt sırta oturma teması engeller.']},
+c4h:{lab:'Mikroiklim',q:'Bir şehrin genel iklimi ılıman ama yeni yüksek, tek başına duran bir kulenin önündeki banklar boş. Olası neden?',o:['İnsanlar bank sevmez','Kule rüzgârı aşağı indiriyor; bankın mikroiklimi kötü','Şehir çok kalabalık'],a:1,fb:['Banklar doğru yerde kullanılır.','Doğru. Genel iklim ile belirli bir bankın mikroiklimi farklıdır.','Kalabalık bankları boşaltmaz.']},
+c4i:{lab:'Sert / yumuşak kenar',q:'Hangisi yumuşak kenar (soft edge)?',o:['Sokağa doğrudan açılan, önünde hiçbir şey olmayan kapı','Alçak çitli küçük ön bahçe, korunaklı kapı önü ve giriş bankı','Sağır bir garaj kapısı dizisi'],a:1,fb:['Bu sert kenar: yalnızca içeri/dışarı.','Doğru. Üç koşul: kolay geçiş, hemen dışarıda iyi yer, anlamlı bir etkinlik.','Bu en sert kenarlardan biri.']},
+c4j:{lab:'Olaylar ve zaman',q:'Konut sokağı çalışmalarında dışarıda geçirilen toplam zamanın çoğunu hangisi oluşturuyordu?',o:['Gelip gitmeler','Durağan etkinlikler (oturmak, bahçe işi, sohbet)'],a:1,fb:['Gelip gitmeler çok sayıda olay üretir ama kısa sürer.','Doğru. Durağan etkinlikler çok daha fazla toplam zaman demektir.']},
+fin:{lab:'Bütünleştir',q:'Bir okul bahçesini yeniden tasarlıyorsun. Gehl’in üç sorusuna en iyi cevap veren öneri hangisi?',o:['Bahçeyi çitle çevirip ortasına büyük bir heykel koymak','Kısa ve doğrudan girişler; kenarlarda, sırtı korunan, gölgeli oturma; kantin ve sınıf girişlerinin bahçeye bakması','Bahçeyi daha geniş bir boş alan yapmak'],a:1,fb:['Görsel kompozisyon tek başına yetmez; ulaşma ve kalma sorunlarını çözmez.','Doğru: ulaşılabilir, kalmak için nedenler var, etkinlikler görünür.','Aşırı büyük boş alan etkinliği seyrek gösterir.']}
+};
+const SORTS={s1:{lab:'Sınıflandır',q:'Her etkinlik hangi türe girer? (Kitaptaki temel kategoriye göre seç.)',cats:[NEC,OPT,SOC],items:[
+['Okula gitmek için yürümek',0,'Seçme şansın yok; kötü havada da gidersin.'],
+['Güneşli bir öğleden sonra meydanda oturmak',1,'Yalnızca koşullar çekiciyse olur.'],
+['Komşuyla kapı önünde selamlaşmak',2,'Başkalarıyla temas: sosyal.'],
+['Otobüs beklemek',0,'Zorunlu bir etkinlik.'],
+['Durup bir sokak sanatçısını izlemek',1,'Keyif için durmak isteğe bağlıdır (izlenen kişiyle pasif temas sosyal boyut da katar).'],
+['Bankta tek başına oturup çevredeki insanları izlemek',2,'Gehl’e göre başkalarını görmek ve duymak da pasif sosyal etkinliktir.'],
+['Çocukların avluda birlikte oynaması',2,'Sosyal etkinlik.'],
+['Posta dağıtmak',0,'İş gereği; zorunlu.']]}};
+// build unified list
+const ALL=[];
+Object.keys(Q).forEach(k=>{});
+const order=[...document.querySelectorAll('[data-q],[data-sort]')];
+order.forEach(el=>{if(el.dataset.q){const k=el.dataset.q,d=Q[k];const p=perm(d.o.length,k);ALL.push({id:k,ch:chOf(k),q:d.q,o:p.map(i=>d.o[i]),a:p.indexOf(d.a),fb:p.map(i=>d.fb[i]),el,lab:d.lab})}else{const s=SORTS[el.dataset.sort];s.items.forEach((it,i)=>ALL.push({id:el.dataset.sort+'_'+i,ch:chOf(el.dataset.sort.replace('s','c')),q:'Sınıflandır: '+it[0],o:s.cats,a:it[1],fb:it[2],el,lab:s.lab,sort:true,sq:s.q}))}});
+function perm(n,k){let h=0;for(const c of k)h=(h*31+c.charCodeAt(0))>>>0;const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){h=(h*1103515245+12345)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+function chOf(k){if(k[0]==='f')return k==='fin'?'fi':'f';return k.slice(0,2)}
+const KEY='lbb_answers_v1';let rec={};try{rec=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(rec))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function record(it,j){const r=rec[it.id]||{attempts:[]};if(r.solved)return r;if(r.first===undefined)r.first=j;r.attempts.push(it.o[j]);if(j===it.a)r.solved=new Date().toISOString();rec[it.id]=r;save();return r}
+function render(){const seen=new Set();ALL.forEach(it=>{if(it.sort){if(!seen.has(it.el)){seen.add(it.el);it.el.innerHTML='<div class="lab">'+esc(it.lab)+'</div><div class="qt">'+esc(it.sq)+'</div>'}const row=document.createElement('div');row.className='sortrow';row.innerHTML='<div class="it">'+esc(it.q.replace('Sınıflandır: ',''))+'</div>'+it.o.map((c,j)=>'<button data-j="'+j+'">'+esc(c)+'</button>').join('')+'<div class="fb"></div>';it.el.appendChild(row);bind(it,row)}else{it.el.innerHTML='<div class="lab">'+esc(it.lab)+'</div><div class="qt">'+esc(it.q)+'</div><div class="opts">'+it.o.map((c,j)=>'<button data-j="'+j+'">'+esc(c)+'</button>').join('')+'</div><div class="fb"></div>';bind(it,it.el)}})}
+function bind(it,box){const fb=box.querySelector('.fb');const btns=[...box.querySelectorAll('button[data-j]')];
+const show=(j,r)=>{btns.forEach(b=>b.classList.remove('wrong'));const ok=j===it.a;btns[j].classList.add(ok?'right':'wrong');const msg=Array.isArray(it.fb)?it.fb[j]:(ok?it.fb:'Tekrar düşün: '+'bu seçenek uygun değil. '+'');fb.className='fb show '+(ok?'ok':'no');fb.textContent=(ok?'Doğru. ':'Tekrar dene. ')+(Array.isArray(it.fb)?msg.replace(/^Doğru\.\s*/,''):(ok?it.fb:'Tanımları yukarıdan tekrar oku.'));if(ok)btns.forEach(b=>b.disabled=true);buildReport()};
+btns.forEach(b=>b.onclick=()=>{const j=+b.dataset.j;record(it,j);show(j)});
+const r=rec[it.id];if(r&&r.solved)show(it.a)}
+function stats(){const by={};Object.keys(CH).forEach(c=>by[c]={n:0,first:0,done:0});let first=0,done=0;ALL.forEach(it=>{const r=rec[it.id],b=by[it.ch];b.n++;if(r){b.done++;done++;if(r.first===it.a){b.first++;first++}}});return{by,first,done,total:ALL.length}}
+function buildReport(){const s=stats();let h='<p><b>'+s.done+' / '+s.total+'</b> soru cevaplandı · İlk denemede doğru: <b>'+s.first+' / '+s.total+'</b> (%'+Math.round(100*s.first/s.total)+')</p><table class="rep"><tr><th>Bölüm</th><th>Cevaplanan</th><th>İlk denemede doğru</th><th style="width:30%"></th></tr>';
+Object.keys(CH).forEach(c=>{const b=s.by[c];h+='<tr><td>'+CH[c]+'</td><td>'+b.done+' / '+b.n+'</td><td>'+b.first+' / '+b.n+'</td><td><div class="bar"><span style="width:'+(b.n?100*b.first/b.n:0)+'%"></span></div></td></tr>'});
+h+='</table>';const wrong=ALL.filter(it=>rec[it.id]&&rec[it.id].first!==it.a);if(wrong.length)h+='<p class="note">Tekrar gözden geçir: '+wrong.map(it=>esc(it.q.length>70?it.q.slice(0,70)+'…':it.q)).join(' · ')+'</p>';document.getElementById('report').innerHTML=h}
+render();buildReport();
+['stuName','stuEmail'].forEach(id=>{const el=document.getElementById(id);try{el.value=localStorage.getItem('lbb_'+id)||''}catch(e){}el.addEventListener('input',()=>{try{localStorage.setItem('lbb_'+id,el.value)}catch(e){}})});
+window.sendAnswers=async function(){const msg=document.getElementById('sendMsg'),btn=document.getElementById('sendBtn');const name=document.getElementById('stuName').value.trim();
+if(!name){msg.className='err';msg.textContent='Lütfen adını ve soyadını yaz.';document.getElementById('stuName').focus();return}
+const s=stats();const data={_subject:'Life Between Buildings cevapları - '+name,_template:'table',_captcha:'false','Öğrenci':name,'Öğrenci e-postası':document.getElementById('stuEmail').value.trim()||'-','Gönderim zamanı':new Date().toLocaleString('tr-TR'),'Cevaplanan soru':s.done+' / '+s.total,'İlk denemede doğru (puan)':s.first+' / '+s.total+' (%'+Math.round(100*s.first/s.total)+')'};
+Object.keys(CH).forEach(c=>{const b=s.by[c];data['Rapor – '+CH[c]]='İlk denemede doğru '+b.first+' / '+b.n+' · cevaplanan '+b.done+' / '+b.n});
+ALL.forEach((it,i)=>{const r=rec[it.id];data[(i+1)+'. ['+CH[it.ch]+'] '+it.q]=r?('İlk cevap: '+it.o[r.first]+' ('+(r.first===it.a?'Doğru':'Yanlış')+') | Deneme sayısı: '+r.attempts.length+(r.attempts.length>1?' | Denemeler: '+r.attempts.join(' → '):'')+(r.solved?' | Sonunda doğru':' | Henüz doğru bulunmadı')):'Cevaplanmadı'});
+try{localStorage.setItem('lbb_last_submission',JSON.stringify(data))}catch(e){}
+btn.disabled=true;msg.className='';msg.textContent='Gönderiliyor…';
+try{const res=await fetch('https://formsubmit.co/ajax/isiltabag@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});const j=await res.json().catch(()=>({}));
+if(res.ok&&String(j.success)!=='false'){msg.className='ok';msg.textContent='Teşekkürler '+name+'! Cevapların Işıl Tabağ’a gönderildi.'}else throw new Error(j.message||res.status)}
+catch(e){msg.className='err';msg.textContent='Gönderilemedi. İnternet bağlantını kontrol edip tekrar dene. Cevapların bu cihazda kayıtlı.'}finally{btn.disabled=false}};
+</script></body></html>
